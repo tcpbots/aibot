@@ -19,9 +19,9 @@ DEVELOPER_USERNAME = os.getenv("DEVELOPER_USERNAME", "@mr_provider")
 OWNER_ID = int(os.getenv("OWNER_ID", "6116993643"))
 ADMIN_IDS = {6116993643, 1809710185}  # Owner and other admin
 
-# Grok AI API
-GROK_API_URL = os.getenv("GROK_API_URL", "https://api.x.ai/grok")
-GROK_API_KEY = os.getenv("GROK_API_KEY", "xai-lMFHXsUhlvwmfyAGvXc2imtoMqOEGIwpstb1qv1go0KNcYAOZxdoJS0IICAigOZaPYsDxA5vsY8coqNO")
+# Grok AI API (updated with new endpoint and key)
+GROK_API_URL = os.getenv("GROK_API_URL", "https://api.x.ai/v1/chat/completions")
+GROK_API_KEY = os.getenv("GROK_API_KEY", "xai-Xi4UTkDU4mKjSaDZDGX2KwfDyE4XHY4mYaksXYV0Bq27GLZeShbwAE6mnCQWxcBPAJEYabdq5e6Cu1Bo")
 
 # News API for trending news
 NEWS_API_URL = "https://newsapi.org/v2/top-headlines"
