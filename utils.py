@@ -10,13 +10,24 @@ logger = logging.getLogger(__name__)
 
 def get_grok_response(message):
     try:
-        headers = {"Authorization": f"Bearer {config.GROK_API_KEY}"}
-        data = {"prompt": message, "model": "grok-3"}
+        headers = {
+            "Authorization": f"Bearer {config.GROK_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        data = {
+            "model": "grok-3",  # Use grok-3 as per initial instructions
+            "messages": [
+                {"role": "system", "content": "You are a PhD-level mathematician."},
+                {"role": "user", "content": message}
+            ]
+        }
         response = requests.post(config.GROK_API_URL, json=data, headers=headers)
         response.raise_for_status()
-        return response.json().get("response", "Sorry, I couldn't process your request.")
+        result = response.json()
+        # Assuming xAI API response follows a similar structure to OpenAI
+        return result["choices"][0]["message"]["content"]
     except Exception as e:
-        logger.error(f"Grok API error: {e}")
+        logger.error(f"xAI API error: {e}")
         return "Error connecting to AI service."
 
 def get_trending_news(country="us", category="general"):
